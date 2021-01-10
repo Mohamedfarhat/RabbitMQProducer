@@ -3,6 +3,7 @@ using RabbitMQ.Client;
 using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Threading;
 
 namespace RabbitMQProducer
 {
@@ -23,6 +24,7 @@ namespace RabbitMQProducer
                 var body = Encoding.UTF8.GetBytes(JsonConvert.SerializeObject(message));
                 channel.BasicPublish("", "demo-queue", null, body);
                 count++;
+                Thread.Sleep(1000);
             }
 
             
